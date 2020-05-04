@@ -11,10 +11,12 @@
 <p>
 	Repository:  <a href="https://github.com/gti-sos/SOS1920-30">gti-sos/SOS1920-30</a>
 </p>
-	//<div class="div-home">
-		//<button type="button" class="btn btn-outline-success" onclick="window.location.href='#/evolution-of-cycling-routes'"> API Evolucion Carriles Bici</button>
-		//<button type="button" class="btn btn-outline-success" onclick="window.location.href='#/rural-tourism-stats'"> API Turismo Rural</button>
-		//<button type="button" class="btn btn-outline-success" onclick="window.location.href='#/traffic-accidents'"> API Accidentes De Trafico </button>
-	//</div>
+<p>
+	-----------------ABAJO PUEDEN ACCEDER A CADA API----------------------------
+</p>
+	<div >
+		<button type="button" class="btn btn-outline-success" "> API indice de masa corporal</button>
+		//<button type="button" class="btn btn-outline-success" "> API consumo de azúcar</button>
+	</div>
 </main>
 
