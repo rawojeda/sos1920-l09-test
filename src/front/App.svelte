@@ -1,23 +1,19 @@
+<!-- App.svelte -->
 <script>
- 
+  import { Router, Link, Route } from "svelte-routing";
+  import Home from "./Home.svelte";
+  import imc from "./imcapi/imc.svelte";
+  import sugarconsume from "./sugarconsumeAPI/sugarconsume.svelte";
+
+  export let url = "";
 </script>
 
-	  
-<main>
-<h1>Team</h1>
-<h2>Raul Ojeda Robles</h2>
-<h2>Fran Zájara Gomez</h2>
-<p>	Project description: Our sources of information are aimed at analyzing the relationship between sugar consumption and the quantity of obese people</p>
-		
-<p>
-	Repository:  <a href="https://github.com/gti-sos/SOS1920-30">gti-sos/SOS1920-30</a>
-</p>
-<p>
-	-----------------ABAJO PUEDEN ACCEDER A CADA API----------------------------
-</p>
-	<div >
-		Boton: API indice de masa corporal
-		//Boton: API consumo de azúcar
-	</div>
-</main>
+<Router url="{url}">
+  <nav>
+    <Link to="Home">Home</Link>
+    <Link to="imc">Indice de masa corporal</Link>
+    <Link to="sugarconsume">consumo de azucar</Link>
+  </nav>
+</Router>
+
 
