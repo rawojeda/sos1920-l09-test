@@ -2,9 +2,6 @@ const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-//APIS:
-const imcapi = require(path.join(__dirname,"imcapi"));
-const sugarconsumeAPI = require(path.join(__dirname,"sugarconsumeAPI"));
 
 var app = express();
 
