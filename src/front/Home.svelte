@@ -1,3 +1,10 @@
+<script>
+  import { Router, Link, Route } from "svelte-routing";
+  import imc from "./imcapi/imc.svelte";
+  import sugarconsume from "./sugarconsumeAPI/sugarconsume.svelte";
+
+  export let url = "";
+</script>
 <main>
 <h1>Team</h1>
 <h2>Raul Ojeda Robles</h2>
@@ -10,8 +17,11 @@
 <p>
 	-----------------ABAJO PUEDEN ACCEDER A CADA API----------------------------
 </p>
-	<div >
-		Boton: API indice de masa corporal
-		//Boton: API consumo de azúcar
-	</div>
+ <nav>
+    <Link to="imc">Indice de masa corporal</Link>
+    <p>
+	<Link to="sugarconsume">consumo de azucar</Link>
+	</p>
+  </nav>
+
 </main>
