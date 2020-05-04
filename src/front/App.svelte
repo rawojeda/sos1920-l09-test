@@ -15,8 +15,8 @@
 	-----------------ABAJO PUEDEN ACCEDER A CADA API----------------------------
 </p>
 	<div >
-		<button type="button" class="btn btn-outline-success" "> API indice de masa corporal</button>
-		//<button type="button" class="btn btn-outline-success" "> API consumo de azúcar</button>
+		Boton: API indice de masa corporal
+		//Boton: API consumo de azúcar
 	</div>
 </main>
 
