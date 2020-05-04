@@ -10,10 +10,15 @@
 
 <Router url="{url}">
   <nav>
-    <Link to="Home">Home</Link>
+    <Link to="/">Home</Link>
     <Link to="imc">Indice de masa corporal</Link>
     <Link to="sugarconsume">consumo de azucar</Link>
   </nav>
+  
+  <div>
+    <Route path="imc" component="{imc}" />
+    <Route path="/"><Home /></Route>
+  </div>
 </Router>
 
 
