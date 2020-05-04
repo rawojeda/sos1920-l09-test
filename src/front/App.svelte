@@ -18,6 +18,7 @@
   <div>
     <Route path="imc" component="{imc}" />
     <Route path="/"><Home /></Route>
+	<Route path="sugarconsume" component="{sugarconsume}" />
   </div>
 </Router>
 
