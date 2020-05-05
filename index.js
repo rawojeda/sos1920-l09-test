@@ -1,18 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const back = require("./src/back");
-var app = express();
 
+const express = require("express");
+const back = require("./src/back");
+const bodyParser = require("body-parser");
+var app = express();
 app.use(bodyParser.json());
 
+
+var port = process.env.PORT || 12345;
+
+app.use("/",express.static("./public"));
 back(app);
 
-var port = process.env.PORT || 9999;
-
-app.use("/", express.static("./public"));
-
 app.listen(port, () => {
-    console.log("Server ready on port " + port);
+	console.log("Server ready");
 });
 
 console.log("Starting server...");
