@@ -1,12 +1,12 @@
 <script>
 	
-	import MyContentTable from './MyContentTable.svelte.html';
+	import imcTable from './imcTable.svelte.html';
 	import NotFound from './NotFound.svelte.html';
-	import editResource from './editResource.svelte.html'
+	import EditValue from './EditValue.svelte.html'
 	import Router from 'svelte-spa-router';
 	const routes = {
-		"/" : MyContentTable,
-		"/sugarconsume/:placename/:year" : editResource,
+		"/" : imcTable,
+		"/indice_de_masa_corporal/:placename/:year" : EditValue,
 		"*" : NotFound
 	}
 
@@ -14,6 +14,6 @@
 
 
 <main>
-	<h1>Sugarconsume Manager</h1>
+	<h1>INDICE DE MASA CORPORAL</h1>
 	<Router {routes} />
 </main>

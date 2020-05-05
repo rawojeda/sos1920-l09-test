@@ -1,172 +1,72 @@
 module.exports = function (app) {
-	console.log("Regidtering sugarconsume API...");
-	// const cool = require("cool-ascii-faces");
+	console.log("Regirecting imcapi...");
 	const dataStore = require("nedb");
 	const path = require("path");
-	 
-	const dbFileName = path.join(__dirname, "sugarconsume.db");
+	const parametros = 2;
+	//app.get("/cool",(request,response) => {
+//	response.send("<html>"+cool()+"</html>");
+//});
+	const dbFileName = path.join(__dirname,"/indice_de_masa_corporal.db");
 	const BASE_API_URL = "/api/v1";
 	 
 	const db = new dataStore({
 					filename: dbFileName,
 					autoload: true
 });
-	 
-	
-	
-	var sugarconsume = [
+var initialimc = [
 	{
-		place: "Europe",
-		sugarconsume: 18800,
-		year:  2017
+		place: "Alemania",
+		indice_de_masa_corporal: 25.32,
+		year: 2019
 		
 	},
 	{
-		place: "China",
-		sugarconsume: 17500,
-		year:  2017
+		place: "Polonia",
+		indice_de_masa_corporal: 23.21,
+		year: 2019
 		
 	},
 	{
-		place: "India",
-		sugarconsume: 28000,
-		year:  2017
+		place: "Hungría",
+		indice_de_masa_corporal: 24.45,
+		year: 2019
 		
 	},
 	{
-		place: "Turkey",
-		sugarconsume: 2300,
-		year:  2017
+		place: "Alemania",
+		indice_de_masa_corporal: 27.03,
+		year: 2020
 		
 	},
 	{
-		place: "Ukraine",
-		sugarconsume: 1580,
-		year: 2017
-		
-	},
-		{
-		place: "Europe",
-		sugarconsume: 18800,
-		year:  2016
+		place: "Polonia",
+		indice_de_masa_corporal: 25.00,
+		year: 2020
 		
 	},
 	{
-		place: "China",
-		sugarconsume: 17700,
-		year:  2016
-		
-	},
-	{
-		place: "India",
-		sugarconsume: 28000,
-		year:  2016
-		
-	},
-	{
-		place: "Turkey",
-		sugarconsume: 2300,
-		year:  2016
-		
-	},
-	{
-		place: "Ukraine",
-		sugarconsume: 1580,
-		year: 2016
-		
-	},{
-		place: "Europe",
-		sugarconsume: 18700,
-		year:  2015
-		
-	},
-	{
-		place: "China",
-		sugarconsume: 17558,
-		year:  2015
-		
-	},
-	{
-		place: "India",
-		sugarconsume: 27195,
-		year:  2015
-		
-	},
-	{
-		place: "Turkey",
-		sugarconsume: 2300,
-		year:  2015
-		
-	},
-	{
-		place: "Ukraine",
-		sugarconsume: 1587,
-		year: 2015
+		place: "Hungría",
+		indice_de_masa_corporal: 2,
+		year: 2020
 		
 	}
-		
+	
 ];
-	 
-	 
 
 
-	 
-	 
-	 //LOADINITIALDATA
-	 
-	 
-app.get(BASE_API_URL+"/sugarconsume/loadInitialData",(req,res) => {
-	console.log("New GET .../loadInitialData");
-	db.insert(sugarconsume);
-	res.sendStatus(200);
-	console.log("Initial sugarconsume loaded" + JSON.stringify(sugarconsume,null,2));
+//Loadinitialdata
+app.get(BASE_API_URL+"/indice_de_masa_corporal/loadInitialData",(req,res) => {
+	
+		console.log("New Get .../indice_de_masa_corporal/loadInitialData")
+	
+	db.insert(initialimc);
+	res.sendStatus(200, "CREATED");
+	console.log("Initialdata sent:"+JSON.stringify(initialimc,null,2));
 });
-	 
-	 //GET SUGARCONSUME/XXX
-	 
-app.get(BASE_API_URL+"/sugarconsume/:place",(req,res) => {
-	var place = req.params.place;
-	db.find({"place" :place},(error, sugarconsume)=>{
-			if(sugarconsume.length==0){
-				console.log("ERROR 404. Recurso no encontrado");
-				res.sendStatus(404);
-			}else{
-				res.send(sugarconsume.map((i)=>{
-					delete i._id;
-					return(i);
-				}));
-				console.log("Recurso mostrado");
-			}
-		})
-		
-});	
-	
-	
-	 
-	 //GET SUGARCONSUME/XXX/YYY
-	 
-app.get(BASE_API_URL+"/sugarconsume/:place/:year",(req,res) => {
-	var place = req.params.place;
-	var year = parseInt(req.params.year);
-	db.find({"place":place, "year": year},(error, sugarconsume)=>{
-			if(sugarconsume.length==0){
-				console.log("ERROR 404. Recurso no encontrado");
-				res.sendStatus(404);
-			}else{
-				res.send(sugarconsume.map((i)=>{
-					delete i._id;
-					return(i);
-				}));
-				console.log("Recurso mostrado");
-			}
-		})
-		
-});	
-	 
-	
-	 //GET SUGARCONSUME
 
-app.get(BASE_API_URL+"/sugarconsume", (req,res) =>{
+
+//GET CONTACTS
+	app.get(BASE_API_URL+"/indice_de_masa_corporal", (req,res) =>{
 	
 	let offset = 0;
 	let limit = Number.MAX_SAFE_INTEGER;
@@ -184,7 +84,7 @@ app.get(BASE_API_URL+"/sugarconsume", (req,res) =>{
 			
 			for(query in req.query){
 				
-				if( (query != "place") && (query != "sugarconsume") && (query != "year")){
+				if( (query != "place") && (query != "indice_de_masa_corporal") && (query != "year")){
 					error_400 = true;
 				}
 			}
@@ -198,63 +98,99 @@ app.get(BASE_API_URL+"/sugarconsume", (req,res) =>{
 				if(req.query.place){
 					search["place"] = req.query.place;
 				} 
-				if(req.query.sugarconsume){
-					search["sugarconsume"] = parseInt(req.query.sugarconsume);
+				if(req.query.indice_de_masa_corporal){
+					search["indice_de_masa_corporal"] = parseInt(req.query.indice_de_masa_corporal);
 				}
 				if(req.query.year){
 					search["year"] = parseInt(req.query.year);
 				}
 	
 			
-		db.find(search).sort({place:1,year:-1}).skip(offset).limit(limit).exec((error, sugarconsume) =>{
+		db.find(search).sort({place:1,year:-1}).skip(offset).limit(limit).exec((error, indice_de_masa_corporal) =>{
 			console.log("valor del offset: " +offset);
 			console.log("valor del limit: " +limit);
-			sugarconsume.forEach((r)=>{
+			indice_de_masa_corporal.forEach((r)=>{
 				delete r._id
 			});
-			res.send(JSON.stringify(sugarconsume,null,2));
+			res.send(JSON.stringify(indice_de_masa_corporal,null,2));
 			console.log("mostrando recursos");
 		});
 }
 	});
-	
-
-	
-	//POST SUGARCONSUME
-
-app.post(BASE_API_URL+"/sugarconsume",(req,res) => {
-	var newSugarconsume = req.body;
-	if((newSugarconsume == "") || (newSugarconsume.place == null || newSugarconsume.year == null)){
-			res.sendStatus(400, "BAD REQUEST(no name provided or no year provided)");
+//POST CONTACTS
+app.post(BASE_API_URL+"/indice_de_masa_corporal",(req,res) => {
+	var newindice_de_masa_corporal = req.body;
+	if((newindice_de_masa_corporal == "") || (newindice_de_masa_corporal.place == null)){
+			res.sendStatus(400, "BAD REQUEST(no name provided)");
 	}
 	else{
-		db.insert(newSugarconsume);
+		db.insert(newindice_de_masa_corporal);
 		res.sendStatus(201, "CREATED");
 	}
 });
-	 
-	 
-	 //POST SUGARCONSUME/XXX
 
-app.post(BASE_API_URL+"/sugarconsume/:place",(req,res) => {
-	
-		res.sendStatus(405, "METHOD NOT ALLOWED");
+
+
+
+
+//GET CONTACT/XXX
+app.get(BASE_API_URL+"/indice_de_masa_corporal/:place",(req,res) => {
+	var place = req.params.place;
+	db.find({"place" :place},(error, indice_de_masa_corporal)=>{
+			if(indice_de_masa_corporal.length==0){
+				console.log("ERROR 404. Recurso no encontrado");
+				res.sendStatus(404);
+			}else{
+				res.send(indice_de_masa_corporal.map((i)=>{
+					delete i._id;
+					return(i);
+				}));
+				console.log("Recurso mostrado");
+			}
+		})
+		
+});	
+//GET CONTACT/XXX/YYYY
+	app.get(BASE_API_URL+"/indice_de_masa_corporal/:place/:year",(req,res) => {
+	var place = req.params.place;
+	var year = parseInt(req.params.year);
+	db.find({"place":place, "year": year},(error, indice_de_masa_corporal)=>{
+			if(indice_de_masa_corporal.length==0){
+				console.log("ERROR 404. Recurso no encontrado");
+				res.sendStatus(404);
+			}else{
+				res.send(indice_de_masa_corporal.map((i)=>{
+					delete i._id;
+					return(i);
+				}));
+				console.log("Recurso mostrado");
+			}
+		})
+		
+});	
+//DELETE CONTACTS
+	app.delete(BASE_API_URL+"/indice_de_masa_corporal",(req,res) => {
+		if(db.length == 0){
+			res.sendStatus(404, "masa corporal NOT FOUND");
+		}else{
+			db.remove({},{multi:true});
+			res.sendStatus(200,"OK")
+		}
 	});
-
-	 
-	 
-	 //PUT SUGARCONSUME/XXX/YYY
 	
-app.put(BASE_API_URL+"/sugarconsume/:place/:year",(req,res) => {
+	
+
+//PUT CONTACT/XXX
+app.put(BASE_API_URL+"/indice_de_masa_corporal/:place/:year",(req,res) => {
 	var place = req.params.place;
 	var year = parseInt(req.params.year);
 	var updated = req.body;
-	db.find({"place":place, "year": year},(error,sugarconsume)=>{
-		console.log(sugarconsume);
-		if(sugarconsume.length == 0){
+	db.find({"place":place, "year": year},(error,indice_de_masa_corporal)=>{
+		console.log(indice_de_masa_corporal);
+		if(indice_de_masa_corporal.length == 0){
 			console.log("Error 404, no se ha encontrado el recurso");
 			res.sendStatus(404);
-			}else if(!updated.place || !updated.sugarconsume ||!updated.year || updated.place != place || updated.year != year){				
+			}else if(!updated.place || !updated.indice_de_masa_corporal ||!updated.year || updated.place != place || updated.year != year){				
 				console.log("mal uso de put");
 				res.sendStatus(400);
 				}else{
@@ -266,46 +202,30 @@ app.put(BASE_API_URL+"/sugarconsume/:place/:year",(req,res) => {
 	
 	
 });
+//DELETE CONTACT/XXX
 
-
-
-	//PUT SUGARCONSUME/XXX
-app.put(BASE_API_URL+"/sugarconsume/:place",(req,res) => {
+app.delete(BASE_API_URL+"/indice_de_masa_corporal/:place",(req,res) => {
 	var place = req.params.place;
-	res.sendStatus(405, "METHOD NOT ALLOWED");
-});
-	
-	
-	//PUT SUGARCONSUME
-app.put(BASE_API_URL+"/sugarconsume",(req,res) => {
-	res.sendStatus(405, "METHOD NOT ALLOWED");
-});
-	
-	//DELETE SUGARCONSUME/XXX
-
-app.delete(BASE_API_URL+"/sugarconsume/:place",(req,res) => {
-	var place = req.params.place;
-		db.find({"place":place},(error, sugarconsume)=>{
-			if(sugarconsume.length==0){
+		db.find({"place":place},(error, indice_de_masa_corporal)=>{
+			if(indice_de_masa_corporal.length==0){
 				console.log("ERROR 404. Recurso no encontrado");
 				res.sendStatus(404);
 			}else{
 				console.log("borrando recurso especificacio");
                 res.sendStatus(200);
-                db.remove({"place":place}, {multi:true});
+                db.remove({ "place":place });
 			}
 		})
 });
 	
-		//DELETE SUGARCONSUME/XXX/YYY
-
-app.delete(BASE_API_URL+"/sugarconsume/:place/:year", (req,res)=>{
+//DELETE CONTACT/XXX/YYYY
+		app.delete(BASE_API_URL+"/indice_de_masa_corporal/:place/:year", (req,res)=>{
 
 		var place = req.params.place;
 		var year = parseInt(req.params.year);
 
-		db.find({"place":place, "year":year},(error, sugarconsume)=>{			 
-			if(sugarconsume.length == 0){
+		db.find({"place":place, "year":year},(error, indice_de_masa_corporal)=>{			 
+			if(indice_de_masa_corporal.length == 0){
 				console.log("Error 404, no se ha encontrado el recurso");
 				res.sendStatus(404);
 			}else{
@@ -315,42 +235,20 @@ app.delete(BASE_API_URL+"/sugarconsume/:place/:year", (req,res)=>{
 			}
 		})
 	});
+
+//POST CONTACT/XXX
+
+app.post(BASE_API_URL+"/indice_de_masa_corporal/:place",(req,res) => {
 	
-	//DELETE SUGARCONSUME
-	app.delete(BASE_API_URL+"/sugarconsume",(req,res) => {
-		if(db.length == 0){
-			res.sendStatus(404, "NOT FOUND");
-		}else{
-			db.remove({},{multi:true});
-			res.sendStatus(200,"OK")
-		}
+		res.sendStatus(405, "METHOD NOT ALLOWED");
 	});
-	
-	
-	
-	
-	
-	
-	//DELETE SUGARCONSUME/XXX/YYYY
 
-		app.delete(BASE_API_URL+"/sugarconsume/:place/:year", (req,res)=>{
-
-		var place = req.params.place;
-		var year = parseInt(req.params.year);
-
-		db.find({"place":place, "year":year},(error, sugarconsume)=>{			 
-			if(sugarconsume.length == 0){
-				console.log("Error 404, no se ha encontrado el recurso");
-				res.sendStatus(404);
-			}else{
-				console.log("borrando un solo recurso");
-                res.sendStatus(200);
-				db.remove({ "place":place, "year":year });
-			}
-		})
-	});
+//PUT CONTACT
+app.put(BASE_API_URL+"/indice_de_masa_corporal",(req,res) => {
+	res.sendStatus(405, "METHOD NOT ALLOWED");
+});
 	
-	 
-	 
-	 console.log("OK");
-}
+	
+	
+	console.log("OK");
+}	
